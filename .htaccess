@@ -1,0 +1,20 @@
+RewriteEngine On
+RewriteBase /
+
+# Разрешаем доступ к существующим файлам и папкам
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Маршрутизация
+RewriteRule ^check-ticket/([^/]+)/?$ check_ticket.php?number=$1 [L,QSA]
+RewriteRule ^movie/(\d+)/?$ movie.php?id=$1 [L,QSA]
+RewriteRule ^booking/(\d+)/?$ booking.php?session=$1 [L,QSA]
+RewriteRule ^profile/?$ profile.php [L]
+RewriteRule ^admin/?$ admin.php [L]
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^register/?$ register.php [L]
+RewriteRule ^logout/?$ logout.php [L]
+
+# Запрещаем доступ к служебным папкам
+RewriteRule ^cache/ - [F]
+RewriteRule ^includes/ - [F]
